@@ -1,7 +1,7 @@
 # NMRScreen.jl
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://waudbygroup.github.io/NMRScreen.jl/stable)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://waudbygroup.github.io/NMRScreen.jl/dev)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://waudbylab.github.io/NMRScreen.jl/stable)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://waudbylab.github.io/NMRScreen.jl/dev)
 [![DOI](https://zenodo.org/badge/890318550.svg)](https://doi.org/10.5281/zenodo.17341691)
 
 NMRScreen.jl is a Julia package for analysis of NMR fragment screening data, currently specialising in 19F R₂ relaxation measurements.
@@ -11,7 +11,7 @@ NMRScreen.jl is a Julia package for analysis of NMR fragment screening data, cur
 ## Development Status
 NMRScreen.jl is in early development and actively evolving. While the core functionality is stable, you may encounter changes in the API, data formats, and features as we continue to improve the package. We're currently focused on R₂-based screening but plan to expand to other NMR screening approaches in future releases.
 
-We warmly welcome feedback, bug reports, and contributions! If you encounter issues, have feature suggestions, or would like to contribute to development, please visit our GitHub repository at [https://github.com/waudbygroup/NMRScreen.jl]. Even if you're new to Julia, we're happy to help you get started with contributing.
+We warmly welcome feedback, bug reports, and contributions! If you encounter issues, have feature suggestions, or would like to contribute to development, please visit our GitHub repository at [https://github.com/waudbylab/NMRScreen.jl]. Even if you're new to Julia, we're happy to help you get started with contributing.
 
 
 ## Quick Start
