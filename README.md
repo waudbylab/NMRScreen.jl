@@ -4,6 +4,8 @@
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://waudbylab.github.io/NMRScreen.jl/dev)
 [![DOI](https://zenodo.org/badge/890318550.svg)](https://doi.org/10.5281/zenodo.17341691)
 
+![NMRScreen logo](logo.png)
+
 NMRScreen.jl is a Julia package for analysis of NMR fragment screening data, currently specialising in 19F R₂ relaxation measurements.
 
 ![Screenshot of NMRScreen.jl analysis window with heatmap](./docs/src/assets/analysis-heatmap-screenshot.png)
