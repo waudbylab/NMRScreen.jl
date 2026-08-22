@@ -13,7 +13,7 @@ makedocs(
         "Home" => "index.md",
     ],
     authors="Chris Waudby",
-    format=Documenter.HTML(),
+    format=Documenter.HTML(; canonical="https://waudbylab.org/NMRScreen.jl/stable/"),
     warnonly=[:missing_docs],
 )
 
