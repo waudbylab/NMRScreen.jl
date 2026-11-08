@@ -24,7 +24,7 @@ function prepcocktails(cocktails)
             newrefspec, newboundspec,
             # cocktail.refspec, cocktail.boundspec,
             ids, xlibrary,
-            Observable(xref), Observable(xbound), Observable(good))
+            Observable(xref), Observable(xbound), Observable(good), xoff1, xoff2)
     end
 end
 

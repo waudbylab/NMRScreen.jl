@@ -12,6 +12,9 @@ function write_results(state)
         mv(od, backup_od)
     end
     mkdir(od)
+    # the registration, saved when it was left, stays with the results
+    registration = joinpath(od * "_previous", "peaklist.csv")
+    isfile(registration) && cp(registration, joinpath(od, "peaklist.csv"))
 
     # bgcolor = state["fig"].scene.backgroundcolor[]
     # state["fig"].scene.backgroundcolor[] = RGBf(1,.85,.85)

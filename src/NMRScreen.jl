@@ -40,19 +40,22 @@ Entry point for the NMR fragment screening analysis application.
 
 # Arguments
 - `experiment_toml`: Path to the experiment configuration TOML file
+- `peaklist`: a registration saved earlier, to carry on from: the `peaklist.csv` written to
+  the output folder on leaving registration, or the folder holding it
 
 # Example
 ```julia
 screen("experiment.toml")
+screen("experiment.toml"; peaklist="out")   # carry on from the registration saved in out
 ```
 """
-function screen(experiment_toml::String)
+function screen(experiment_toml::String; peaklist=nothing)
     GLMakie.activate!(;float=true, focus_on_show=true, title="NMRScreen.jl")
     config = parseconfig(experiment_toml)           # Load configuration
     library = parselibrary(config)                  # Load library definitions (fragments + cocktails)
     cocktails = loadcocktails(config, library)      # Load cocktail experimental data
 
-    cocktails, regstate = registration(config, library, cocktails)    # Start the registration analysis GUI
+    cocktails, regstate = registration(config, library, cocktails; peaklist)    # Start the registration analysis GUI
 
     while true
         finished = relaxation(config, library, cocktails)       # Start the relaxation analysis GUI

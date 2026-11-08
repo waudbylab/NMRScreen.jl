@@ -27,6 +27,15 @@ using NMRScreen
 screen("experiment.toml")
 ```
 
+An example screen, of 19F fragment cocktails against BSA, is available from
+[NMRExampleData.jl](https://waudbylab.org/NMRExampleData.jl/stable/), which downloads it the
+first time it is used and gives the path of its `experiment.toml`:
+
+```julia
+using NMRExampleData
+screen(example("screen_bsa"))
+```
+
 ## Overview
 
 NMRScreen.jl provides a streamlined workflow for processing and analysing NMR fragment screening data. The analysis proceeds in two stages:
@@ -190,6 +199,17 @@ Keyboard shortcuts:
 - Control-click: Reset zoom
 - Right-drag: Pan spectrum
 
+When you leave registration, it is saved as `peaklist.csv` in the output folder: where each
+fragment peak was placed in the reference and bound spectra, and whether it is included. To
+carry on from it later, rather than registering again from the start, pass it, or the
+output folder, when you start:
+
+```julia
+screen("experiment.toml"; peaklist="out")
+```
+
+Peaks the list does not mention are placed automatically, as before.
+
 ### Analysis GUI
 
 The second stage quantifies binding through ΔR₂ analysis:
@@ -208,7 +228,8 @@ Keyboard shortcuts:
 
 ## Output Files
 
-Results are saved in the specified output directory:
+Results are saved in the specified output directory, beside the `peaklist.csv` that
+records the registration:
 
 1. **top_fragments.pdf**: Fragments ranked by ΔR₂ with distribution histogram
 
