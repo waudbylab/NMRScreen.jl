@@ -34,4 +34,45 @@ using Test
 
         @test_throws ArgumentError readpeaklist!([fresh], joinpath(dir, "nope.csv"))
     end
+    @testset "An example screen writes its output elsewhere" begin
+        toml = """
+               [setup]
+               name = "Test"
+               date = "2024-11-11"
+               operator = "A. Tester"
+               spectrometer = "X"
+               temperature = 298.0
+               [files]
+               fragment_library = "library.toml"
+               experiment_directory = "data"
+               output_directory = "out"
+               [protein]
+               name = "P"
+               concentration = 1.0
+               concentration_unit = "uM"
+               buffer = "B"
+               [[cocktails]]
+               id = "C1"
+               reference = "1"
+               experiment = "101"
+               """
+        # a screen of one's own writes beside its experiment.toml
+        dir = mktempdir()
+        write(joinpath(dir, "experiment.toml"), toml)
+        @test NMRScreen.parseconfig(joinpath(dir, "experiment.toml")).output_directory ==
+              joinpath(dir, "out")
+        # an example, inside a downloaded artifact, writes to the working directory
+        depot = mktempdir()
+        example = mkpath(joinpath(depot, "artifacts", "0a1b"))
+        write(joinpath(example, "experiment.toml"), toml)
+        pushfirst!(DEPOT_PATH, depot)
+        try
+            work = mktempdir()
+            config = cd(() -> NMRScreen.parseconfig(joinpath(example, "experiment.toml")), work)
+            @test config.output_directory == joinpath(realpath(work), "out")
+            @test config.library_filename == joinpath(example, "library.toml")
+        finally
+            popfirst!(DEPOT_PATH)
+        end
+    end
 end

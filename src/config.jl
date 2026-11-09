@@ -44,6 +44,11 @@ function parseconfig(filename)
 
     # get location of config file and use it as working directory
     wd = dirname(filename)
+    output = joinpath(wd, files["output_directory"])
+    if inartifact(output)
+        output = abspath(files["output_directory"])
+        @info "The screen is example data, which must not change: writing its output to $output"
+    end
     
     exptconfig = ExperimentConfig(
         setup["name"],
@@ -58,9 +63,12 @@ function parseconfig(filename)
         joinpath(wd, files["fragment_library"]),
         joinpath(wd, files["reference_directory"]),
         joinpath(wd, files["experiment_directory"]),
-        joinpath(wd, files["output_directory"]),
+        output,
         cocktails
     )
 
     return exptconfig
 end
+
+# An example screen is inside a downloaded artifact, which must not change.
+inartifact(path) = any(d -> startswith(abspath(path), joinpath(abspath(d), "artifacts")), DEPOT_PATH)
