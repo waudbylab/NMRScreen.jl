@@ -49,5 +49,6 @@ function get_embeddings(cocktails)
         push!(fingerprint_matrix, fingerprint_parsed)
     end
     fingerprint_matrix = hcat(fingerprint_matrix...)
-    return umap(fingerprint_matrix, 2; n_neighbors=20, min_dist=0.1, metric=Jaccard())
+    result = UMAP.fit(fingerprint_matrix, 2; n_neighbors=20, min_dist=0.1, metric=Jaccard())
+    return stack(result.embedding)
 end

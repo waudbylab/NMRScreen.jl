@@ -17,6 +17,8 @@ using UMAP
 
 export screen
 export smilestoimage
+# example data, from NMRExampleData through NMRTools
+export example, examples, exampleinfo
 
 # Include other source files
 include("types.jl")

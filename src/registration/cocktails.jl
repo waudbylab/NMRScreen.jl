@@ -6,8 +6,8 @@ function prepcocktails(cocktails)
         fragment_ids = [p.fragment_id for p in cocktail.peaks]
         smiles = [p.smiles for p in cocktail.peaks]
         xlibrary = [p.library_shift for p in cocktail.peaks]
-        xref0 = detectpeaks(cocktail.refspec)
-        xbound0 = detectpeaks(cocktail.boundspec)
+        xref0 = peakshifts(cocktail.refspec)
+        xbound0 = peakshifts(cocktail.boundspec)
         
         # 1.2. assign fragment peaks
         xref, xbound, good = process_peaks(ids, xlibrary, xref0, xbound0)
@@ -17,8 +17,8 @@ function prepcocktails(cocktails)
         # @info "Offsets: $xoff1, $xoff2"
         xref .-= xoff1
         xbound .-= xoff2
-        newrefspec = add_offset(cocktail.refspec, F1Dim, -xoff1)
-        newboundspec = add_offset(cocktail.boundspec, F1Dim, -xoff2)
+        newrefspec = shiftdim(cocktail.refspec, F1Dim, -xoff1)
+        newboundspec = shiftdim(cocktail.boundspec, F1Dim, -xoff2)
 
         RegistrationCocktail(cocktail.id, cocktail.name, fragment_ids, smiles,
             newrefspec, newboundspec,

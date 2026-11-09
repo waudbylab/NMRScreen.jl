@@ -26,14 +26,17 @@ using NMRScreen
 screen("experiment.toml")
 ```
 
-An example screen, of 19F fragment cocktails against BSA, is available from
-[NMRExampleData.jl](https://waudbylab.org/NMRExampleData.jl/stable/), which downloads it the
-first time it is used and gives the path of its `experiment.toml`:
+An example screen, of 19F fragment cocktails against BSA, comes from
+[NMRExampleData.jl](https://waudbylab.org/NMRExampleData.jl/stable/). `example` downloads it
+the first time you use it and gives the path of its `experiment.toml`:
 
 ```julia
-using NMRExampleData
+using NMRScreen
 screen(example("screen_bsa"))
 ```
+
+The `example` folder of this repository holds that screen's configuration files, to copy as
+a starting point for your own.
 
 ## Overview
 
